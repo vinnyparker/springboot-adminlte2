@@ -1,1 +1,13 @@
-create table users (    username varchar(50) not null primary key,    password varchar(255) not null,    enabled boolean not null) engine = InnoDb;create table authorities (    username varchar(50) not null,    authority varchar(50) not null,    foreign key (username) references users (username),    unique index authorities_idx_1 (username, authority)) engine = InnoDb;
+create table users (
+  username varchar(50) not null primary key,
+  password varchar(255) not null,
+  enabled boolean not null);
+CREATE TABLE public.authorities (
+  username varchar(50) NOT NULL,
+  authority varchar(50) NOT NULL,
+  CONSTRAINT authorities_users_fk FOREIGN KEY (username) REFERENCES public.users(username) ON DELETE RESTRICT ON UPDATE CASCADE
+)
+WITH (
+OIDS=FALSE
+);
+CREATE INDEX authorities_username_idx ON public.authorities (username,authority);

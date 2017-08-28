@@ -1,14 +1,14 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.thymeleaf.org/spring-data" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 <head>
-    <title>Clientes</title>
+    <title>Pais</title>
 </head>
 <body>
 <section layout:fragment="header">
-<h1>Clientes</h1>
+<h1>Pais</h1>
 <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li class="active">Clientes</li>
+    <li class="active">Pais</li>
 </ol>
 </section>
 <div layout:fragment="content">
@@ -16,7 +16,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Listagem</h3>
             <div class="box-tools pull-right">
-                <a href="/customers/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <a href="/pais/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
                 <br clear="all" />
             </div>
         </div>
@@ -25,29 +25,27 @@
                 <tr>
                     <th>Codigo</th>
                     <th>Nome</th>
-                    <th>Email</th>
-                    <th>Data de Cadastro</th>
+                    <th>Sigla</th>
                     <th>Ações</th>
                 </tr>
                 <tr th:each="row : ${list}">
                     <td th:text="${row.id}"></td>
-                    <td th:text="${row.firstname + ' ' + row.lastname}"></td>
-                    <td th:text="${row.email}"></td>
-                    <td th:text="${#dates.format(row.addedDate, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${row.nome}"></td>
+                    <td th:text="${row.sigla}"></td>
                     <td>
-                        <a th:href="${'/customers/edit/' + row.id}">editar</a> -
-                        <a th:href="${'/customers/delete/' + row.id}">excluir</a>
+                        <a th:href="${'/pais/edit/' + row.id}">editar</a> -
+                        <a th:href="${'/pais/delete/' + row.id}">excluir</a>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="/customers/1">Primeira</a></li>
+                <li><a href="/pais/1">Primeira</a></li>
                 <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}" th:class="${p == currentIndex} ? 'active' : ''">
-                    <a th:href="${'/customers/' + p}" th:text="${p}"></a>
+                    <a th:href="${'/pais/' + p}" th:text="${p}"></a>
                 </li>
-                <li><a th:href="${'/customers/' + endIndex}">Última</a></li>
+                <li><a th:href="${'/pais/' + endIndex}">Última</a></li>
             </ul>
         </div>
     </div>
